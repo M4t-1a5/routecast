@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="RouteCast tests" xmlns="http://www.topografix.com/GPX/1/1">
+  <wpt lat="48.0" lon="2.0"><name>Ignoré</name></wpt>
+  <rte>
+    <name>Itinéraire planifié</name>
+    <rtept lat="45.0000" lon="6.0000"></rtept>
+    <rtept lat="45.0100" lon="6.0000"></rtept>
+    <rtept lat="45.0200" lon="6.0000"></rtept>
+  </rte>
+</gpx>

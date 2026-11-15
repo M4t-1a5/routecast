@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="RouteCast tests" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata><name>Sortie test</name></metadata>
+  <trk>
+    <name>Piste 1</name>
+    <type>running</type>
+    <trkseg>
+      <trkpt lat="48.8500" lon="2.3000"><ele>35</ele><time>2026-05-10T07:00:00Z</time></trkpt>
+      <trkpt lat="48.8510" lon="2.3000"><ele>36</ele><time>2026-05-10T07:00:30Z</time></trkpt>
+      <trkpt lat="48.8510" lon="2.3000"><ele>36</ele><time>2026-05-10T07:00:31Z</time></trkpt>
+    </trkseg>
+    <trkseg>
+      <trkpt lat="48.8520" lon="2.3000"><time>2026-05-10T07:01:00Z</time></trkpt>
+      <trkpt lat="48.8530" lon="2.3000"><ele>40</ele><time>2026-05-10T07:01:30Z</time></trkpt>
+    </trkseg>
+  </trk>
+  <trk>
+    <trkseg>
+      <trkpt lat="48.8540" lon="2.3000"><ele>42</ele><time>2026-05-10T07:02:00Z</time></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

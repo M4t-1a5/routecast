@@ -1,0 +1,191 @@
+@import 'tailwindcss';
+/* OWNER: agent UI — thème, tokens, glassmorphism */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Inter Variable', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Couleurs sémantiques (valeurs pilotées par le thème, voir :root / .dark) */
+  --color-fg: var(--rc-fg);
+  --color-fg-muted: var(--rc-fg-muted);
+  --color-fg-subtle: var(--rc-fg-subtle);
+  --color-glass: var(--rc-glass);
+  --color-glass-strong: var(--rc-glass-strong);
+  --color-glass-border: var(--rc-glass-border);
+  --color-tile: var(--rc-tile);
+  --color-tile-hover: var(--rc-tile-hover);
+  --color-line: var(--rc-line);
+  --color-canvas: var(--rc-canvas);
+
+  /* Accent : bleu ciel → indigo */
+  --color-accent: #4f8ff7;
+  --color-accent-strong: #3b6fe0;
+  --color-accent-from: #38bdf8;
+  --color-accent-to: #6366f1;
+  --color-good: #22c55e;
+  --color-warn: #f59e0b;
+  --color-bad: #ef4444;
+
+  --radius-panel: 22px;
+  --radius-tile: 16px;
+
+  --shadow-glass: 0 10px 40px -12px rgb(2 6 23 / 0.45), 0 2px 8px -2px rgb(2 6 23 / 0.25);
+  --shadow-glass-sm: 0 4px 16px -6px rgb(2 6 23 / 0.35);
+}
+
+:root {
+  --rc-fg: #0f172a;
+  --rc-fg-muted: #334155;
+  --rc-fg-subtle: #5b6b82;
+  --rc-glass: rgb(255 255 255 / 0.66);
+  --rc-glass-strong: rgb(255 255 255 / 0.86);
+  --rc-glass-border: rgb(255 255 255 / 0.55);
+  --rc-tile: rgb(15 23 42 / 0.045);
+  --rc-tile-hover: rgb(15 23 42 / 0.08);
+  --rc-line: rgb(15 23 42 / 0.1);
+  --rc-canvas: #dbe4f0;
+  color-scheme: light;
+}
+
+.dark {
+  --rc-fg: #f8fafc;
+  --rc-fg-muted: #cbd5e1;
+  --rc-fg-subtle: #94a3b8;
+  --rc-glass: rgb(17 24 39 / 0.55);
+  --rc-glass-strong: rgb(15 20 35 / 0.82);
+  --rc-glass-border: rgb(255 255 255 / 0.12);
+  --rc-tile: rgb(255 255 255 / 0.06);
+  --rc-tile-hover: rgb(255 255 255 / 0.1);
+  --rc-line: rgb(255 255 255 / 0.1);
+  --rc-canvas: #0b1020;
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--rc-canvas);
+  color: var(--rc-fg);
+  font-family: var(--font-sans);
+  font-feature-settings: 'cv11', 'ss01';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+@utility glass {
+  background: var(--rc-glass);
+  border: 1px solid var(--rc-glass-border);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  box-shadow: var(--shadow-glass);
+}
+
+@utility glass-strong {
+  background: var(--rc-glass-strong);
+  border: 1px solid var(--rc-glass-border);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  box-shadow: var(--shadow-glass);
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@utility scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--rc-line) transparent;
+}
+
+@utility focus-ring {
+  outline: none;
+  &:focus-visible {
+    box-shadow:
+      0 0 0 2px var(--rc-canvas),
+      0 0 0 4px #60a5fa;
+  }
+}
+
+/* Skeleton shimmer */
+@keyframes rc-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+@utility skeleton {
+  background: linear-gradient(90deg, var(--rc-tile) 25%, var(--rc-tile-hover) 50%, var(--rc-tile) 75%);
+  background-size: 200% 100%;
+  animation: rc-shimmer 1.4s ease-in-out infinite;
+  border-radius: 10px;
+}
+
+/* Sliders */
+input[type='range'].rc-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, var(--color-accent-from), var(--color-accent-to)) 0 / var(--rc-fill, 50%) 100%
+      no-repeat,
+    var(--rc-line);
+  cursor: pointer;
+}
+input[type='range'].rc-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 0;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.35);
+}
+input[type='range'].rc-range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 0;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.35);
+}
+input[type='range'].rc-range:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 4px;
+}
+
+/* Inputs date/heure : icône lisible en sombre */
+.dark input[type='date']::-webkit-calendar-picker-indicator,
+.dark input[type='time']::-webkit-calendar-picker-indicator {
+  filter: invert(1) opacity(0.7);
+}
+
+/* uPlot : on gère nous-mêmes l'infobulle et la légende */
+.rc-profile .u-legend {
+  display: none;
+}
+.rc-profile .u-cursor-x {
+  border-right: 1px dashed var(--rc-fg-subtle) !important;
+}
+.rc-profile .u-cursor-y {
+  display: none;
+}
+.rc-profile .u-over {
+  touch-action: pan-y;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+  }
+}
